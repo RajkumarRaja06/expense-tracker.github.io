@@ -9,6 +9,7 @@ const inputAmountEl = document.getElementById("inputAmount");
 const amountTypeEl = document.getElementById("amountType");
 const btnTransactionEl = document.getElementById("btnTransaction");
 const listEl = document.getElementById("list");
+
 // localStorage.clear();
 //localStorage
 let transactions = localStorage.getItem("transactions");
@@ -23,6 +24,7 @@ const init = () => {
   showItem(transactions);
   calculateValue(transactions);
 };
+
 btnTransactionEl.addEventListener("click", (e) => {
   listEl.innerHTML = null;
   e.preventDefault();
@@ -34,7 +36,6 @@ btnTransactionEl.addEventListener("click", (e) => {
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
   const currentDate = `${day}-${month}-${year}`;
-
   const transaction = {
     id: Date.now(),
     date: currentDate,
@@ -103,8 +104,6 @@ const calculateValue = (transactions) => {
 
   income = incomeArray.reduce((prev, val) => prev + val, 0);
   expense = expenseArray.reduce((prev, val) => prev + val, 0);
-  console.log(incomeArray);
-  console.log(expenseArray);
   balance = income - expense;
 
   balanceAmtEL.innerHTML = `₹ ${balance}`;
